@@ -55,7 +55,7 @@ app.on('window-all-closed', function () {
 ipcMain.handle('electronMain:openScreenSecurity', () => util.openSystemPreferences('security', 'Privacy_ScreenCapture'));
 ipcMain.handle('electronMain:getScreenAccess', () => !IS_OSX || systemPreferences.getMediaAccessStatus('screen') === 'granted');
 ipcMain.handle('electronMain:screen:getSources', () => {
-    return desktopCapturer.getSources({types: ['window', 'screen']}).then(async sources => {
+    return desktopCapturer.getSources({types: ['screen']}).then(async sources => {
         return sources.map(source => {
             source.thumbnailURL = source.thumbnail.toDataURL();
             return source;
